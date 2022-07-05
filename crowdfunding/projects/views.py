@@ -85,4 +85,4 @@ class ProjectDetail(APIView):
             status=status.HTTP_400_BAD_REQUEST
         )
 
-    def delete(self, request, pk):
+    # def delete(self, request, pk):
