@@ -10,7 +10,7 @@ from .permissions import IsOwnerOrReadOnly
 
 class PledgeList(APIView):
 
-    def get(self, request):
+    def get(self, request, pk):
         pledges = Pledge.objects.all()
         serializer = PledgeSerializer(pledges, many=True)
         return Response(serializer.data)
@@ -18,7 +18,7 @@ class PledgeList(APIView):
     def post(self, request):
         serializer = PledgeSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(owner=request.user)
+            serializer.save(supporter=request.user)
             return Response(
                 serializer.data,
                 status=status.HTTP_201_CREATED
@@ -76,3 +76,13 @@ class ProjectDetail(APIView):
         )
         if serializer.is_valid():
             serializer.save()
+            return Response(
+                serializer.data,
+                status=status.HTTP_200_OK
+            )
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    def delete(self, request, pk):
