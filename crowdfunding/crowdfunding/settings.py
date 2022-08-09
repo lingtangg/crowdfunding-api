@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get(
 DEBUG = os.environ.get('DJANGO_DEBUG') != 'False'
 ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ORIGINS_ALLOW_ALL = True
+CORS_ORIGINS_ALLOW_ALL = True
 
 
 # Application definition
